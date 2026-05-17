@@ -1,29 +1,37 @@
-const order = {
-    order_num: 67871, 
-    customer: {
-        name: "Fake Man",
-        email: "fake@gmail.com",
+ // Tvoje projekty jako pole objektů
+const projects = [
+    {
+        title: "Sidebar",
+        description: "Po kliknutí na tlačítko se vysune sidebar",
+        GitHub_URL: "https://github.com/juras-janicek/sidebar",
+        language: "JavaSkript",
+        
     },
-    product: {
-        name: "Super shoes",
-        price: 6700,
+    {
+        title: "My Portfolio",
+        description: "Vizualizace stránky o mně",
+        GitHub_URL: "https://github.com/juras-janicek/my-portfolio",
+        language: "JavaSkript",
     },
-    showSumary(){
-        console.log(`order ${this.order_num}: ${this.customer.name} ordered ${this.product.name} for ${this.product.price}`)
+    {
+        title: "id-card",
+        description: "karta se základními informacemi",
+        GitHub_URL: "https://github.com/juras-janicek/id-card",
+        language: "Phyton",
     }
-}
+];
 
+// Najdeme kontejner v HTML
+const container = document.getElementById("projects-container");
 
-const products = [
-    {name: "water", price: 10.99, on_stock: true},
-    {name: "apple", price: 15.99, on_stock: false},
-    {name: "milk", price: 20.99, on_stock: true},
-]
-
-const our_products = products.forEach(products => {return `${products.name}: ${products.price} ${products.on_stock ? "is on stock" : "isn't on stock"}`})
-
-const on_stock = products.filter(products => {return products.on_stock} )
-
-const find_Milk = products.find(products => {return products.name === "milk"})
-
-console.log(find_Milk)
+// Projdeme každý projekt a vytvoříme kartu
+projects.forEach(project => {
+    container.innerHTML += `
+        <div class="card">
+             <h2>${project.title}</h2>
+             <div class="language_${project.language}">${project.language}</div>
+             <a class="GitHub" href="${project.GitHub_URL}" target="_blank">github</a>
+             <p>${project.description}</p>
+         </div>
+    `;
+});
