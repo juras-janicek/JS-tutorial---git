@@ -1,37 +1,51 @@
- // Tvoje projekty jako pole objektů
-const projects = [
-    {
-        title: "Sidebar",
-        description: "Po kliknutí na tlačítko se vysune sidebar",
-        GitHub_URL: "https://github.com/juras-janicek/sidebar",
-        language: "JavaSkript",
-        
-    },
-    {
-        title: "My Portfolio",
-        description: "Vizualizace stránky o mně",
-        GitHub_URL: "https://github.com/juras-janicek/my-portfolio",
-        language: "JavaSkript",
-    },
-    {
-        title: "id-card",
-        description: "karta se základními informacemi",
-        GitHub_URL: "https://github.com/juras-janicek/id-card",
-        language: "Phyton",
+class Car {
+    static #totalCars = 0
+
+    constructor(brand, model, year){
+        this.brand = brand
+        this.model = model
+        this.year = year
+        Car.#totalCars++;
     }
-];
+    static getCount(){
+        return `you have ${ElectricCar.#totalCars} car/cars`
+    }
 
-// Najdeme kontejner v HTML
-const container = document.getElementById("projects-container");
+    getAge(){
+        return `${this.model} is ${2026 - this.year} years old`
+    }
+}
 
-// Projdeme každý projekt a vytvoříme kartu
-projects.forEach(project => {
-    container.innerHTML += `
-        <div class="card">
-             <h2>${project.title}</h2>
-             <div class="language_${project.language}">${project.language}</div>
-             <a class="GitHub" href="${project.GitHub_URL}" target="_blank">github</a>
-             <p>${project.description}</p>
-         </div>
-    `;
-});
+class ElectricCar extends Car{
+    static #totalCars = 0
+    #batteryLevel = 100;
+
+    constructor(brand, model, year, batteryRange){
+        super(brand, model, year)
+        this.batteryRange = batteryRange
+        
+        ElectricCar.#totalCars++;
+    }
+
+    static getCount(){
+        return `you have ${ElectricCar.#totalCars} electric car/cars`
+    }    
+
+    getBatery(){
+        return `${this.model} got ${this.#batteryLevel}km battery level`
+    }
+    charge(amount){
+        if (amount<0){return "you can't charge negative batery level"}
+        if (amount + this.#batteryLevel > 100){
+            return `you can charge max ${100 - this.#batteryLevel}`
+        }
+        this.#batteryLevel += amount
+        return `battery successfully charged on ${this.#batteryLevel}`
+    }
+    getBatteryStatus(){
+        return `battery status: ${this.#batteryLevel}`
+    }
+}
+
+const bmw = new Car("BMW", "M3", 1999)
+const lotus = new ElectricCar("Lotus", "Evija", 2010, 100)
