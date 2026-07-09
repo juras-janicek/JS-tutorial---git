@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 40px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Kontejner – karty vedle sebe */
+#projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Jedna karta */
+.card {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    /* Animace při najetí myší */
+    transition: transform 0.2s;
+}
+
+/* Efekt při hoveru */
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h2 {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.card .language_JavaSkript {
+    position: absolute;
+    border: 1px solid #f4d72f;
+    padding: 5px;
+    right: 5px;
+    top: 5px;
+    border-radius: 8px;
+    color: #d7b702;
+    background-color: #eae7c8;
+}
+.card .language_Phyton {
+    position: absolute;
+    border: 1px solid #1b4785;
+    padding: 3px;
+    right: 5px;
+    top: 5px;
+    border-radius: 8px;
+    color: #0262d7;
+    background-color: #23c307;
+}
+
+.card .GitHub {
+    position: absolute;
+    border: 1px solid #666666;
+    padding: 3px;
+    left: 10px;
+    top: 5px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #5e5e5e;
+    background-color: #cccccc;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.5;
+}
