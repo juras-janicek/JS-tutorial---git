@@ -3,13 +3,17 @@ import ChatHeader from "@/components/chat/ChatHeader";
 import ChatWindow from "@/components/chat/ChatWindow";
 import ChatInput from "@/components/chat/ChatInput";
 
-export default function Chat() {
+export default async function Chat({ params }) {
+    const {chatID} = await params;
+    
+
     return (
         <div className="flex h-screen bg-slate-100">
             <Sidebar />
 
             <main className="flex flex-1 flex-col">
-                <ChatHeader />
+                <ChatHeader 
+                title={chatID}/>
 
                 <div className="flex-1 overflow-y-auto p-6">
                     <ChatWindow />

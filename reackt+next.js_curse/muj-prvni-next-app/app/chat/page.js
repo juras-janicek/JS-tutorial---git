@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import chatAPI from "@/services/chatAPI";
-import ChatInput from "@/components/chat/ChatInput";
-import ChatWindow from "@/components/chat/ChatWindow";
-import Chat from "./chatID/page";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 export default function ChatHome() {
 
@@ -28,9 +26,8 @@ export default function ChatHome() {
   return (
     <main>
 
-        <Chat/>
-
-
+      <Sidebar/>
+      
     </main>
  
     

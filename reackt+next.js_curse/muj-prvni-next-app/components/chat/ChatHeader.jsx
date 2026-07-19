@@ -1,8 +1,8 @@
-export default function ChatHeader() {
+export default function ChatHeader({ title }) {
     return (
         <header className="border-b border-slate-200 bg-white px-6 py-4">
             <h1 className="text-xl font-semibold">
-                AI Chat
+                {title}
             </h1>
         </header>
     );

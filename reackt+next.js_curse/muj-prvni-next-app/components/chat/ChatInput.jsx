@@ -3,7 +3,7 @@ export default function ChatInput() {
         <div className="flex gap-3">
             <input
                 type="text"
-                placeholder="Napiš zprávu..."
+                placeholder="send message..."
                 className="flex-1 rounded-lg border border-slate-300 px-4 py-2 outline-none focus:border-blue-500"
             />
 
