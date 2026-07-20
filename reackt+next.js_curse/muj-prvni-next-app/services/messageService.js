@@ -29,13 +29,13 @@ export async function getMessages(sessionId) {
         const {data, error} = await supabase
             .from("messages")
             .select("*")
-            .eq("chat_session.id", sessionId)
+            .eq("chat_id", sessionId)
             .order("created_at", { ascending: true })
 
         if (error){
             throw error;
         }
-
+        console.log(data)
         return data;
 
     }catch(error){

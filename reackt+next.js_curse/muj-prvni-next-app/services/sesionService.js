@@ -12,9 +12,8 @@ export async function getSessions(userId = null) {
         }
 
         const { data, error } = await query;
-        console.log("Data:", data);
 
-        console.log("Error:", error);
+
 
         if (error) {
             throw error;
@@ -36,23 +35,40 @@ export function mapSession(data = []) {
     }));
 }
 
-export async function addSession(userId, title){
-    try{
+export async function addSession(userId, title) {
+    try {
         const { data, error } = await supabase
             .from('chat_sessions')
             .insert([
                 { user_id: userId, title: title },
             ])
             .select();
-        
-        
+
+
         if (error) {
             throw error;
-        }  
-        console.log(data);
+        }
 
         return data[0]
-    }catch(error){
+    } catch (error) {
         throw error;
     }
 };
+
+export async function getSessionTile(chatId) {
+    try {
+        const { data, error } = await supabase
+            .from("chat_sessions")
+            .select("title")
+            .eq("id", chatId)
+            .single();
+
+        if (error) {
+            throw error;
+        }
+        return data.title;
+
+    } catch (error) {
+        throw error;
+    };
+}

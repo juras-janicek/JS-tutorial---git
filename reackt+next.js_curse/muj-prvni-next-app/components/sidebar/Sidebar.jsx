@@ -15,7 +15,6 @@ export default function Sidebar() {
         async function loadSessions() {
             try {
                 const sessions = await getSessions();
-                console.log("Sessions:", sessions);
                 setChatSessions(mapSession(sessions));
                 setError("");
             } catch (error) {
