@@ -12,7 +12,8 @@ async function chatAPI(sessionId, prompt) {
         });
 
         if (!response.ok) {
-            throw new Error("can't fetch your data");
+            const error = await response.text();
+            throw new Error(error);
         }
 
         const data = await response.json();

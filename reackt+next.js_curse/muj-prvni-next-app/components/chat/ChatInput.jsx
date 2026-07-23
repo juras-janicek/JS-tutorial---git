@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import chatAPI from "@/services/chatAPI";
 
 export default function ChatInput({ chatId }) {
     const [prompt, setPrompt] = useState("");
     const [error, setError] = useState("");
+    const router = useRouter();
 
     async function handleChat() {
         if (!prompt.trim()) {
@@ -17,6 +19,7 @@ export default function ChatInput({ chatId }) {
             setError("");
             await chatAPI(chatId, prompt.trim());
             setPrompt("");
+            router.refresh();
         } catch (error) {
             setError(error?.message || "Nepodařilo se odeslat zprávu.");
         }

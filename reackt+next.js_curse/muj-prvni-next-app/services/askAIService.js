@@ -10,6 +10,7 @@ export default async function askAI(messages) {
 
   const model = process.env.OPENROUTER_MODEL || DEFAULT_FREE_MODEL;
 
+
   const response = await fetch(OPENROUTER_API_URL, {
     method: "POST",
     headers: {

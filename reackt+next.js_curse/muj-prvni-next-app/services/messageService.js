@@ -1,53 +1,50 @@
 import supabase from "@/lib/supabase";
 
-export async function saveMessage(sessionId, role, content){
-    try{
-        
+export async function saveMessage(sessionId, role, content) {
+    try {
+        console.log("chat_id:", sessionId);
         const { data, error } = await supabase
             .from("messages")
             .insert({
-                chat_session_id: sessionId,
+                chat_id: sessionId,
                 role: role,
                 content: content,
             })
             .select();
 
-        if(error){
+        if (error) {
             throw error;
         };
 
         return data;
 
-    }catch(error){
-        throw error; 
+    } catch (error) {
+        throw error;
     };
 }
 
 export async function getMessages(sessionId) {
-    try{
+    try {
 
-        const {data, error} = await supabase
+        const { data, error } = await supabase
             .from("messages")
             .select("*")
             .eq("chat_id", sessionId)
             .order("created_at", { ascending: true })
 
-        if (error){
+        if (error) {
             throw error;
         }
-        console.log(data)
         return data;
 
-    }catch(error){
+    } catch (error) {
         throw error;
     };
 }
 
-export async function mapMessageForAI(message){
-    message.map((e) => {
-        return {
-            role: role,
-            content: content
-        }
-    });
+export async function mapMessageForAI(message) {
+    return message.map((e) => ({ 
+        role: e.role, 
+        content: e.content 
+    }));
 }

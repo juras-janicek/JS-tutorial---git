@@ -3,6 +3,7 @@ import sendMessage from "@/services/chatService";
 
 export async function POST(request) {
   try {
+    console.log(`request ${request}`)
     const { sessionId, prompt } = await request.json();
 
     if (!sessionId || typeof prompt !== "string" || prompt.trim().length === 0) {

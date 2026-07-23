@@ -4,7 +4,6 @@ import { getMessages } from "@/services/messageService";
 export default async function ChatWindow({chatId}) {
 
     const messages = await getMessages(chatId);
-    console.log(`messages: ${messages}`);
     return (
         <div className="space-y-4">
 
