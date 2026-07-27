@@ -1,8 +1,23 @@
+
+import fs from "fs/promises";
+
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const DEFAULT_FREE_MODEL = "nvidia/nemotron-nano-9b-v2:free";
 
 export default async function askAI(messages) {
   const apiKey = process.env.OPENROUTER_API_KEY;
+  const SYSTEM_PROMPT = await fs.readFile(
+    "prompts/chatSystemPrompt.md",
+    "utf8"
+  );  
+  const messagesWithSystem = [
+    {
+      role: "system",
+      content: SYSTEM_PROMPT,
+    },
+    ...messages,
+  ];
+
 
   if (!apiKey) {
     throw new Error("OPENROUTER_API_KEY is missing.");
@@ -21,7 +36,7 @@ export default async function askAI(messages) {
     },
     body: JSON.stringify({
       model,
-      messages,
+      messages: messagesWithSystem,
     }),
   });
 
@@ -37,5 +52,14 @@ export default async function askAI(messages) {
     throw new Error("OpenRouter returned an empty response.");
   }
 
-  return answer;
+  try {
+    const aiResponse = JSON.parse(answer);
+
+    return aiResponse;
+  }catch (error) {
+    throw new Error("AI returned an invalid JSON response.", {
+      cause: error,
+    });
+  }
+
 }

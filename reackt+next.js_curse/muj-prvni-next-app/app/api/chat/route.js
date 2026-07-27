@@ -13,7 +13,7 @@ export async function POST(request) {
       );
     }
 
-    const answer = await sendMessage(sessionId, prompt);
+    const answer = await sendMessage(sessionId, prompt, 2);
 
     return NextResponse.json({ answer });
 
