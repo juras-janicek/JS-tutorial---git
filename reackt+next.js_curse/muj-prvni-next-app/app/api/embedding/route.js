@@ -1,6 +1,6 @@
 
 import { NextResponse } from "next/server";
-import getEmbedding from "@/services/getEmbeddingService";
+import getEmbedding from "@/services/embenddngs/getEmbeddingService";
 
 export async function POST(request) {
   try {

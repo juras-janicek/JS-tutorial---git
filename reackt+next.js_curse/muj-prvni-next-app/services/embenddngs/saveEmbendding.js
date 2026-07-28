@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "@/lib/supabase";
 
 
 export default async function saveEmbedding(userId, content, embedding) {
@@ -21,4 +21,3 @@ export default async function saveEmbedding(userId, content, embedding) {
         throw error;
     }
 };
-
